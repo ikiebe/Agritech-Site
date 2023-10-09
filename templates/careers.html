@@ -1,0 +1,60 @@
+{% include 'css links.html' %}
+{% include 'nav.html' %}
+
+<br><br>
+
+<center>
+<h1 class="header111">Come and work with us</h1>
+
+</center>
+
+<div class="fif">
+    <p class="recr">Welcome to our Careers Page! At Agritech, we believe that our greatest asset is our people. We are committed to fostering a dynamic and inclusive work environment where individuals can thrive, grow, and make a meaningful impact.
+        As a part of our team, you will have the opportunity to collaborate with talented professionals, tackle challenging projects, and contribute to the success of a forward-thinking organization. We value diversity, creativity, and innovation, and we're dedicated to providing our employees with the support and resources they need to excel in their careers.
+        Explore our current job openings to discover exciting opportunities across various departments and experience levels. Whether you're just starting your career or looking to take the next step, we invite you to join us on this journey of growth and achievement.
+        Join us in shaping the future, making a difference, and building a career that you can be proud of. Your success is our success, and together, we can achieve great things.
+        Ready to embark on this exciting adventure? Explore our job listings and take the first step toward a rewarding career at Agritech."
+    </p>
+
+    <h1 class="header112">Our Mission Statement</h1>
+    
+    <p class="recr">"To revolutionize agriculture through advanced technology solutions that empower farmers, enhance food security, and promote sustainable 
+        practices, ensuring a prosperous and resilient future for the global farming community."</p>
+
+    <h1 class="header112">Our Vision Statement</h1>
+    <p class="recr">"Our vision is to be at the forefront of AgriTech innovation, driving the digital transformation of agriculture worldwide. We envision a future where precision farming, data-driven decisions, and eco-friendly practices are the norm, leading to abundant harvests,
+        reduced environmental impact, and improved livelihoods for farmers across the globe."</p>
+        
+    </div>
+    
+    {% if request.user.is_authenticated %}
+
+    <div class="centeredDiv">
+        <a href="{% url 'logout' %}" class="login2">You're logged in, Logout?</a>
+    </div>
+
+        <div class="centeredDiv">
+            <h2 class="noOfjobs">{{no_of_jobs}} jobs openings</h2>
+            <ul class="jobListings">
+            {% for job in jobs %}
+                
+                    <li class="role">{{job.role}} --- {{job.location}}</li>
+                <button class="apply">
+                    <a class="applyHref" href="{% url 'apply' %}">
+                        Apply
+                    </a>
+                    </button>
+            {% endfor %}
+            </ul>
+        </div>
+    {% else %}
+        <br/><br/><br/>
+    <div class="centeredDiv">
+            <a class="login2" href="{% url 'login_register' %}">Login to view availabe openings</a>
+    </div>
+    {% endif %}
+    
+    
+    
+
+{% include 'footer.html' %}
